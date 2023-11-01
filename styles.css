@@ -1,37 +1,31 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-.product {
-    display: grid;
-  grid-template-rows: auto auto auto auto;
+let cartItems = [];
 
-  }
-.product{
-    display: flex;
-    height: 250px;
-    background-color: rgb(220, 144, 200);
-}
-.products, .cart {
-    float: left;
-    width: 45%;
-    margin: 0 2.5%;
+function addToCart(product, price) {
+    cartItems.push({product, price});
+    updateCart();
 }
 
-.product, .cart-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+function updateCart() {
+    let cartList = document.getElementById("cart-items");
+    let totalElement = document.getElementById("total");
+    let total = 0;
+
+    cartList.innerHTML = "";
+    cartItems.forEach(item => {
+        let listItem = document.createElement("li");
+        listItem.innerText = `${item.product} - $${item.price}`;
+        cartList.appendChild(listItem);
+        total += item.price;
+    });
+
+    totalElement.innerText = total;
 }
 
-button {
-    background-color: #008CBA;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
 
-button:hover {
-    background-color: #005f6b;
+
+
+// Add product and cart logic similar to the previous example
+
+function checksout() {
+    alert('Thank you for your purchase!');
 }
